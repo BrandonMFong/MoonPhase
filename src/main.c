@@ -41,23 +41,22 @@ void disable_pin()
 		return(4);
 }
 
+/*
+ * Write GPIO value
+ * hmmm, should out be bool or int type?
+ * I just don't want to hold up so much space for this variable
+ */
+void gpio_output(int pin, bool out)
+{
+    if (-1 == GPIOWrite(POUT, (int)out))
+        return(3);
+}
+
 
 int main(int argc, char *argv[])
 {
-	int repeat = 10;
-
-
-	do {
-		/*
-		 * Write GPIO value
-		 */
-		if (-1 == GPIOWrite(POUT, repeat % 2))
-			return(3);
-
-
-		usleep(500 * 1000);
-	}
-	while (repeat--);
+    // Put the array indexes in an array 
+    int[4]pins = 1,2,3,4;
 
 	return(0);
 }
