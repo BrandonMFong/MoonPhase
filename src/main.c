@@ -54,10 +54,6 @@ int main(int argc, char *argv[])
 		if (-1 == GPIOWrite(POUT, repeat % 2))
 			return(3);
 
-		/*
-		 * Read GPIO value
-		 */
-		printf("I'm reading %d in GPIO %d\n", GPIORead(PIN), PIN);
 
 		usleep(500 * 1000);
 	}
