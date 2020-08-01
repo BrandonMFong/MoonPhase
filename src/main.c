@@ -1,5 +1,5 @@
 /*
- *
+ * https://elinux.org/RPi_GPIO_Code_Samples#C
  * Raspberry Pi GPIO example using sysfs interface.
  * Guillermo A. Amaral B. <g@maral.me>
  *
