@@ -14,14 +14,14 @@ double GetJulianDay(struct DateTime Date)
     double C = 2 - A + B;
     double E = 365.25 * (Date.Year + 4716);
     double F = 30.6001 * (Date.Month + 1);
-    double JulianDay = C+D+E+F-1524.5;
+    double JulianDay = C+Date.Day+E+F-1524.5;
     return JulianDay;
 }
 
 double GetFraction()
 {
     // struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
-    double Julian_Today = GetJulianDay(GetDateTime);
+    double Julian_Today = GetJulianDay(GetDateTime());
     double Julian_LastKnownNewMoon = GetJulianDay({1, 6, 2000, 12, 24, 1});
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
