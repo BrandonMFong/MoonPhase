@@ -7,8 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-    // Put the array indexes in an array 
-    int[4] pins = 1,2,3,4;
+        // Put the array indexes in an array 
+        int[4] pins = 1,2,3,4;
 
-	return(0);
+        return(0);
 }

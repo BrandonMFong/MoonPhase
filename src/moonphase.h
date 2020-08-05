@@ -38,7 +38,7 @@ void set_output(int pin)
 void disable_pin()
 {
 	if (-1 == GPIOUnexport(POUT) || -1 == GPIOUnexport(PIN))
-		return(4);
+        exit(-1);
 }
 
 /*
@@ -49,7 +49,7 @@ void disable_pin()
 void gpio_output(int pin, bool out)
 {
     if (-1 == GPIOWrite(POUT, (int)out))
-        return(3);
+        exit(-1);
 }
 
 
