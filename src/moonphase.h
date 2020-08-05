@@ -59,6 +59,6 @@ int GetMoonState(double Days)
             else if (MoonDays.ThirdQ < Days < MoonDays.Full) return WANINGGIBBOUS;
             else if (MoonDays.Full < Days < MoonDays.FirstQ) return WAXINGGIBBOUS;
             else if (MoonDays.FirstQ < Days < MoonDays.Max) return WAXINGCRESCENT;
-            else NEW; // See if this throws an error
+            else return NEW; // See if this throws an error
     }
 }
