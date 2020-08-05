@@ -1,9 +1,13 @@
-// /*
-//  * Is this sending serial data?
-//  * Use the gpio numbers
-//  */
+/*
+ * Is this sending serial data?
+ * Use the gpio numbers
+ * 
+ * Notes:
+ *      - Every new moon is 29.53 days
+ */
 
-#include "moonphase.h"
+#include "RpiGPIO.h"
+#include "MoonPhase.h"
 
 int main(int argc, char *argv[])
 {
