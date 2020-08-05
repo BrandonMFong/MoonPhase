@@ -5,14 +5,23 @@
 
 // States
 enum MoonState{NEW, WANINGCRESCENT, THIRDQTR, WANINGGIBBOUS, FULL, WAXINGGIBBOUS, FIRSTQTR, WAXINGCRESCENT};
+
 struct MoonDays
 {
-    double New = 0;
-    double ThirdQ = 7;
-    double Full = 15;
-    double FirstQ = 22;
-    double Max = 29.53;
+    double New;
+    double ThirdQ;
+    double Full;
+    double FirstQ;
+    double Max;
 } MoonDays;
+// struct MoonDays
+// {
+    MoonDays.New = 0;
+    MoonDays.ThirdQ = 7;
+    MoonDays.Full = 15;
+    MoonDays.FirstQ = 22;
+    MoonDays.Max = 29.53;
+// } MoonDays;
 
 
 double GetJulianDay(struct DateTime Date)
