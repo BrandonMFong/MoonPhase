@@ -11,7 +11,7 @@ struct DateTime
     int Hour, Minute, Second;
 };
 
-DateTime GetDateTime()
+struct DateTime GetDateTime()
 {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
