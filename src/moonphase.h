@@ -3,7 +3,17 @@
 #include <math.h>
 #include "DateTime.h"
 
-// #define NewMoonCycle 29.53
+// States
+enum MoonState{NEW, WANINGCRESCENT, THIRDQTR, WANINGGIBBOUS, FULL, WAXINGGIBBOUS, FIRSTQTR, WAXINGCRESCENT};
+struct MoonDays
+{
+    double New = 0;
+    double ThirdQ = 7;
+    double Full = 15;
+    double FirstQ = 22;
+    double Max = 29.53;
+} MoonDays;
+
 
 double GetJulianDay(struct DateTime Date)
 {
@@ -35,17 +45,6 @@ double GetFraction()
 
     return MoonCycleFraction;
 }
-
-// States
-enum MoonState{NEW, WANINGCRESCENT, THIRDQTR, WANINGGIBBOUS, FULL, WAXINGGIBBOUS, FIRSTQTR, WAXINGCRESCENT};
-struct MoonDays
-{
-    double New = 0;
-    double ThirdQ = 7;
-    double Full = 15;
-    double FirstQ = 22;
-    double Max = 29.53;
-} MoonDays;
 
 int GetMoonState(double Days)
 {
