@@ -7,7 +7,7 @@
  */
 
 #include "RpiGPIO.h"
-#include "MoonPhase.h"
+#include "moonphase.h"
 
 int main(int argc, char *argv[])
 {
