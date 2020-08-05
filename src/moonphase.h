@@ -15,13 +15,15 @@ struct MoonDays
     double Max;
 } MoonDays;
 // struct MoonDays
-// {
-    MoonDays.New = 0;
-    MoonDays.ThirdQ = 7;
-    MoonDays.Full = 15;
-    MoonDays.FirstQ = 22;
-    MoonDays.Max = 29.53;
-// } MoonDays;
+
+MoonDays = (MoonDays)
+{
+    .New = 0,
+    .ThirdQ = 7,
+    .Full = 15,
+    .FirstQ = 22,
+    .Max = 29.53
+};
 
 
 double GetJulianDay(struct DateTime Date)
@@ -40,9 +42,9 @@ double GetJulianDay(struct DateTime Date)
 
 double GetFraction()
 {
-    struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
+    // struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
     double Julian_Today = GetJulianDay(GetDateTime());
-    double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon);
+    double Julian_LastKnownNewMoon = GetJulianDay((DateTime){1, 6, 2000, 12, 24, 1}); // Casting
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
     double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since last known new moon
