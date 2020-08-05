@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <math.h>
 #include "DateTime.h"
 
 // #define NewMoonCycle 29.53
@@ -20,9 +21,9 @@ double GetJulianDay(struct DateTime Date)
 
 double GetFraction()
 {
-    // struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
+    struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
     double Julian_Today = GetJulianDay(GetDateTime());
-    double Julian_LastKnownNewMoon = GetJulianDay({1, 6, 2000, 12, 24, 1});
+    double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon);
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
     double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since last known new moon
