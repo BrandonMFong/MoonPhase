@@ -4,6 +4,7 @@
  */
 
 #include "RPi_GPIO_Code_Samples.h"
+#include<stdbool.h>
 
 /*
  * Enable GPIO pins
