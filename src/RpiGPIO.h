@@ -85,6 +85,8 @@ void gpio_output(int pin, int out)
 }
 
 
+// Recall 0x00 is 8 bits long, one byte
+// Which is the size for a char
 unsigned char RPIPORT = 0x00;
 
 /* Takes port variable and parse it to write to output
@@ -93,5 +95,11 @@ unsigned char RPIPORT = 0x00;
  */
 void Set_Port()
 {
+        RPIPORT &= 0x0F; // Only worry about the right most pins
 
+        // Get the pin values from the port variable
+        gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
+        gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
+        gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
+        gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
 }

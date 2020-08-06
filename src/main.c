@@ -44,10 +44,9 @@ int main(int argc, char *argv[])
                 // _sleep(GetHours(10));
                 sleep(5);
 
-                // Test output
-                gpio_output(GPIO06,(int)IO);  
+                RPIPORT = 0x0F;
 
-                Set_Port(); 
+                Set_Port(); // Assign output pins 
         }
 
         return(0);
