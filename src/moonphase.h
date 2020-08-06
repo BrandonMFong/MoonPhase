@@ -15,14 +15,11 @@ struct MoonDays
     double FirstQ;
     double Max;
 } MoonDays;
-struct MoonDays MoonDays = {0,7,15,22,29.53}; 
+struct MoonDays MoonDays = {0,7,15,22,29.53}; // Day per phase
 
-
+// Get julian day number
 double GetJulianDay(struct DateTime Date)
 {
-    // struct DateTime Date = GetDateTime;
-
-    // Get Julian Day data
     double A = Date.Year / 100;
     double B = A / 4;
     double C = 2 - A + B;
@@ -32,6 +29,7 @@ double GetJulianDay(struct DateTime Date)
     return JulianDay;
 }
 
+// This fraction represents how far you are into the moon phase
 double GetFraction()
 {
     struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
@@ -49,6 +47,8 @@ double GetFraction()
     return MoonCycleFraction;
 }
 
+// Pass in the julian day number and it will tell you which phase you are on
+// TODO make sure Days is julian day number
 int GetMoonState(double Days)
 {
     if (Days == NEW) return NEW;

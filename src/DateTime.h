@@ -18,3 +18,9 @@ struct DateTime GetDateTime()
     struct DateTime dt = {tm.tm_mon, tm.tm_mday, tm.tm_year, tm.tm_hour, tm.tm_min, tm.tm_sec};
     return dt;
 }
+
+unsigned long  GetHours(double NumberOfHours)
+{
+    // Seconds * Minutes * Hours
+    return 60 * 60 * NumberOfHours;
+}
