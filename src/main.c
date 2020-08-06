@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 
         for(int i = 0; i < sizeof(gpioArray); i++)
         {
+                printf("Initializing pin %d", gpioArray[i]);
                 init_gpio(gpioArray[i]); // Initiliaze array
                 set_output(gpioArray[i]); // set gpio pin to output
         }
