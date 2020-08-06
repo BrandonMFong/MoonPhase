@@ -12,7 +12,10 @@
 void init_gpio(int pin)
 {
 	if (-1 == GPIOExport(pin)) 
-        exit(-1);
+        {
+		fprintf(stderr, "[Init] Error for pin \n", pin);
+                exit(-1);
+        }
 }
 
 /*
@@ -21,7 +24,10 @@ void init_gpio(int pin)
 void set_input(int pin)
 {
 	if (-1 == GPIODirection(pin, IN))
-        exit(-1);
+        {
+		fprintf(stderr, "[Input] Error for pin \n", pin);
+                exit(-1);
+        }
 }
 
 /*
@@ -30,16 +36,22 @@ void set_input(int pin)
 void set_output(int pin)
 {
 	if (-1 == GPIODirection(pin, OUT))
-        exit(-1);
+        {
+		fprintf(stderr, "[Output] Error for pin \n", pin);
+                exit(-1);
+        }
 }
 
 /*
  * Disable GPIO pins
  */
-void disable_pin()
+void disable_pin(int pin)
 {
-	if (-1 == GPIOUnexport(POUT) || -1 == GPIOUnexport(PIN))
-        exit(-1);
+	if (-1 == GPIOUnexport(pin))
+        {
+		fprintf(stderr, "[Disable] Error for pin \n", pin);
+                exit(-1);
+        }
 }
 
 /*
@@ -49,6 +61,9 @@ void disable_pin()
  */
 void gpio_output(int pin, bool out)
 {
-    if (-1 == GPIOWrite(POUT, (int)out))
-        exit(-1);
+        if (-1 == GPIOWrite(POUT, (int)out))
+        {
+		fprintf(stderr, "[Write output] Error for pin \n", pin);
+                exit(-1);
+        }
 }
