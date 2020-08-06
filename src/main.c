@@ -19,16 +19,20 @@
 #define GPIO19 19
 #define GPIO26 26
 
+#define PIN  24
+
 int main(int argc, char *argv[])
 {
         int gpioArray[4] = {GPIO06, GPIO13, GPIO19, GPIO26};
 
-        for(int i = 0; i < sizeof(gpioArray); i++)
-        {
-                init_gpio(gpioArray[i]); // Initiliaze array
-                set_output(gpioArray[i]); // set gpio pin to output
-        }
+        // for(int i = 0; i < sizeof(gpioArray); i++)
+        // {
+        //         init_gpio(gpioArray[i]); // Initiliaze array
+        //         set_output(gpioArray[i]); // set gpio pin to output
+        // }
 
+        init_gpio(PIN);
+        set_output(PIN);
         // I am going to use a char
         // I want to use 4 bits to represent the phases
         unsigned char IO = 0x00; // Right most bits will be the bits I care about
@@ -43,7 +47,7 @@ int main(int argc, char *argv[])
                 sleep(5);
 
                 // Test output
-                gpio_output(GPIO06,~IO);
+                gpio_output(PIN,~IO);
         }
 
         return(0);
