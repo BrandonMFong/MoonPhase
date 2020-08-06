@@ -6,6 +6,7 @@
 // States
 enum MoonState{NEW, WANINGCRESCENT, THIRDQTR, WANINGGIBBOUS, FULL, WAXINGGIBBOUS, FIRSTQTR, WAXINGCRESCENT};
 
+// This struct is to hold the values for Moon Phase days
 struct MoonDays
 {
     double New;
@@ -14,16 +15,7 @@ struct MoonDays
     double FirstQ;
     double Max;
 } MoonDays;
-// struct MoonDays
-
-MoonDays = (MoonDays)
-{
-    .New = 0,
-    .ThirdQ = 7,
-    .Full = 15,
-    .FirstQ = 22,
-    .Max = 29.53
-};
+struct MoonDays MoonDays = {0,7,15,22,29.53}; 
 
 
 double GetJulianDay(struct DateTime Date)
