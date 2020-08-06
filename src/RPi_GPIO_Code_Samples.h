@@ -24,8 +24,7 @@
 // This is GPIO 4 pin 7
 #define POUT 4  /* P1-07 */
 
-static int
-GPIOExport(int pin)
+static int GPIOExport(int pin)
 {
 #define BUFFER_MAX 3
 	char buffer[BUFFER_MAX];
@@ -44,8 +43,7 @@ GPIOExport(int pin)
 	return(0);
 }
 
-static int
-GPIOUnexport(int pin)
+static int GPIOUnexport(int pin)
 {
 	char buffer[BUFFER_MAX];
 	ssize_t bytes_written;
@@ -63,8 +61,7 @@ GPIOUnexport(int pin)
 	return(0);
 }
 
-static int
-GPIODirection(int pin, int dir)
+static int GPIODirection(int pin, int dir)
 {
 	static const char s_directions_str[]  = "in\0out";
 
@@ -88,8 +85,7 @@ GPIODirection(int pin, int dir)
 	return(0);
 }
 
-static int
-GPIORead(int pin)
+static int GPIORead(int pin)
 {
 #define VALUE_MAX 30
 	char path[VALUE_MAX];
@@ -113,8 +109,7 @@ GPIORead(int pin)
 	return(atoi(value_str));
 }
 
-static int
-GPIOWrite(int pin, int value)
+static int GPIOWrite(int pin, int value)
 {
 	static const char s_values_str[] = "01";
 
