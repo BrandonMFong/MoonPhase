@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
 {
         int gpioArray[4] = {GPIO06, GPIO13, GPIO19, GPIO26};
 
-        printf("Size of gpioArray is %d", sizeof(gpioArray));
+        printf("Size of gpioArray is %d\n", sizeof(gpioArray));
         for(int i = 0; i < sizeof(gpioArray); i++)
         {
-                printf("Initializing pin %d", gpioArray[i]);
+                printf("Initializing pin %d\n", gpioArray[i]);
                 init_gpio(gpioArray[i]); // Initiliaze array
                 set_output(gpioArray[i]); // set gpio pin to output
         }
