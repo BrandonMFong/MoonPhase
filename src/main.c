@@ -19,8 +19,6 @@
 #define GPIO19 19
 #define GPIO26 26
 
-#define 
-
 int main(int argc, char *argv[])
 {
         int gpioArray[4] = {GPIO06, GPIO13, GPIO19, GPIO26};
