@@ -26,7 +26,7 @@
 
 static int GPIOExport(int pin)
 {
-#define BUFFER_MAX 3
+	#define BUFFER_MAX 3
 	char buffer[BUFFER_MAX];
 	ssize_t bytes_written;
 	int fd;

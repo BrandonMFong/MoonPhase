@@ -59,9 +59,9 @@ void disable_pin(int pin)
  * hmmm, should out be bool or int type?
  * I just don't want to hold up so much space for this variable
  */
-void gpio_output(int pin, bool out)
+void gpio_output(int pin, int out)
 {
-        if (-1 == GPIOWrite(POUT, (int)out))
+        if (-1 == GPIOWrite(pin, out))
         {
 		fprintf(stderr, "[Write output] Error for pin %d\n", pin);
                 exit(-1);

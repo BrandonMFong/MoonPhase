@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
                 sleep(5);
 
                 // Test output
-                gpio_output(GPIO06,true);
+                gpio_output(GPIO06,1);
         }
 
         return(0);
