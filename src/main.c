@@ -23,10 +23,11 @@
 
 int main(int argc, char *argv[])
 {
+        // This is not setting the array correctly 
         int gpioArray[4] = {GPIO06, GPIO13, GPIO19, GPIO26};
 
-        printf("Size of gpioArray is %d\n", sizeof(gpioArray));
-        for(int i = 0; i < sizeof(gpioArray); i++)
+        printf("Size of gpioArray is %d\n", sizeof(gpioArray)/sizeof(gpioArray[0]));
+        for(int i = 0; i < sizeof(gpioArray)/sizeof(gpioArray[0]); i++)
         {
                 printf("Initializing pin %d\n", gpioArray[i]);
                 init_gpio(gpioArray[i]); // Initiliaze array
