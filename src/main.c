@@ -13,18 +13,13 @@
 #include <stdio.h>   
 #include <unistd.h>
 
-// GPIO pins
-#define GPIO06 6
-#define GPIO13 13
-#define GPIO19 19
-#define GPIO26 26
 
 #define PIN  24
 
 int main(int argc, char *argv[])
 {
         // This is not setting the array correctly 
-        int gpioArray[4] = {GPIO06, GPIO13, GPIO19, GPIO26};
+        int gpioArray[4] = {GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM};
 
         printf("Size of gpioArray is %d\n", sizeof(gpioArray)/sizeof(gpioArray[0]));
         for(int i = 0; i < sizeof(gpioArray)/sizeof(gpioArray[0]); i++)
@@ -51,6 +46,8 @@ int main(int argc, char *argv[])
 
                 // Test output
                 gpio_output(GPIO06,(int)IO);  
+
+                Set_Port(); 
         }
 
         return(0);
