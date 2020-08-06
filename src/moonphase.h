@@ -34,14 +34,14 @@ double GetJulianDay(struct DateTime Date)
 
 double GetFraction()
 {
-    // struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
-    double Julian_Today = GetJulianDay(GetDateTime());
-    double Julian_LastKnownNewMoon = GetJulianDay((DateTime){1, 6, 2000, 12, 24, 1}); // Casting
+    struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
+    double Julian_Today = GetJulianDay(GetDateTime()); // Get current day
+    double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon); // Get a known recorded new moon day
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
-    double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since last known new moon
+    double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since Julian_LastKnownNewMoon date
     double integral;
-    double fractional = modf(some_double, &integral); // Get the fraction of the whole number
+    double fractional = modf(NumberOfNewMoons, &integral); // Get the fraction of the whole number
 
     // Use the fractional to get how far you are in the phase 
     double MoonCycleFraction = fractional * MoonDays.Max;
@@ -51,17 +51,13 @@ double GetFraction()
 
 int GetMoonState(double Days)
 {
-    switch(Days)
-    {
-        case (NEW): return NEW;
-        case (THIRDQTR): return THIRDQTR;
-        case (FULL): return FULL;
-        case (FIRSTQTR): return FIRSTQTR;
-        default:
-            if(MoonDays.New < Days < MoonDays.ThirdQ) return WANINGCRESCENT;
-            else if (MoonDays.ThirdQ < Days < MoonDays.Full) return WANINGGIBBOUS;
-            else if (MoonDays.Full < Days < MoonDays.FirstQ) return WAXINGGIBBOUS;
-            else if (MoonDays.FirstQ < Days < MoonDays.Max) return WAXINGCRESCENT;
-            else return NEW; // See if this throws an error
-    }
+    if (Days == NEW) return NEW;
+    else if (Days == THIRDQTR) return THIRDQTR;
+    else if (Days == FULL) return FULL;
+    else if (Days == FIRSTQTR) return FIRSTQTR;
+    else if (MoonDays.New < Days < MoonDays.ThirdQ) return WANINGCRESCENT;
+    else if (MoonDays.ThirdQ < Days < MoonDays.Full) return WANINGGIBBOUS;
+    else if (MoonDays.Full < Days < MoonDays.FirstQ) return WAXINGGIBBOUS;
+    else if (MoonDays.FirstQ < Days < MoonDays.Max) return WAXINGCRESCENT;
+    else return NEW; // See if this throws an error
 }
