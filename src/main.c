@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         // set_output(PIN);
         // I am going to use a char
         // I want to use 4 bits to represent the phases
-        unsigned char IO = 0x0A; // Right most bits will be the bits I care about
+        RPIPORT = 0x0A; // Right most bits will be the bits I care about
 
         // STEPS
         // 1 - Get Fractional
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         while(1)
         {
                 // _sleep(GetHours(10));
-                sleep(5);
+                sleep(1);
 
                 RPIPORT = ~RPIPORT;
 
