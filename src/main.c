@@ -11,6 +11,7 @@
 #include "RpiGPIO.h"
 #include "moonphase.h"
 #include <stdio.h>   
+#include <unistd.h>
 
 // GPIO pins
 #define GPIO06 6
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
         while(1)
         {
                 // _sleep(GetHours(10));
-                _sleep(5);
+                sleep(5);
 
                 // Test output
                 gpio_output(GPIO06,~IO);
