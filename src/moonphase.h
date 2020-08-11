@@ -35,7 +35,7 @@ double GetFraction()
     struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
     struct DateTime Date = GetDateTime();
     printf("Today's date: %d/%d/%d, %d:%d:%d", Date.Month,Date.Day,Date.Year,Date.Hour,Date.Minute,Date.Second);
-    double Julian_Today = GetJulianDay(); // Get current day
+    double Julian_Today = GetJulianDay(Date); // Get current day
     double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon); // Get a known recorded new moon day
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
