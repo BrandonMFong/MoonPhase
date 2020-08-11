@@ -56,12 +56,12 @@ int main(int argc, char *argv[])
         // 3 - Assign GPIO pins
         while(1)
         {
-                sleep(TWELVEHOURS);
-
                 RPIPORT = GetPortValue();
 
                 // I think this can be a thread
                 Set_Port(); // Assign output pins 
+
+                sleep(TWELVEHOURS);
         }
 
         return(0);
