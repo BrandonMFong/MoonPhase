@@ -24,6 +24,7 @@
  */
 void init_gpio(int pin)
 {
+        printf("Initializing pin %d\n", pin);
 	if (-1 == GPIOExport(pin)) 
         {
 		fprintf(stderr, "[Init] Error for pin %d\n", pin);
@@ -36,6 +37,7 @@ void init_gpio(int pin)
  */
 void disable_pins(int pin)
 {
+        printf("Deinitializing pin %d\n", pin);
 	if (-1 == GPIOUnexport(pin)) 
         {
 		fprintf(stderr, "[Exit] Error for pin %d\n", pin);

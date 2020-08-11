@@ -13,8 +13,23 @@
 #include <stdio.h>   
 #include <unistd.h>
 
-
+#define TWELVEHOURS 43200
 #define PIN  24
+
+unsigned char GetPortValue()
+{
+        switch(GetMoonState())
+        {
+                case NEW: return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+                case WANINGCRESCENT: return (1<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+                case THIRDQTR: return (1<<GPIO06)|(1<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+                case WANINGGIBBOUS: return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(0<<GPIO26);
+                case FULL: return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+                case WAXINGGIBBOUS: return (0<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+                case FIRSTQTR: return (0<<GPIO06)|(0<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+                case WAXINGCRESCENT: return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(1<<GPIO26);
+        }
+}
 
 int main(int argc, char *argv[])
 {
@@ -24,10 +39,7 @@ int main(int argc, char *argv[])
         printf("Size of gpioArray is %d\n", sizeof(gpioArray)/sizeof(gpioArray[0]));
         for(int i = 0; i < sizeof(gpioArray)/sizeof(gpioArray[0]); i++)
         {
-                // Reset
-                printf("Deinitializing pin %d\n", gpioArray[i]);
-                disable_pins(gpioArray[i]);
-                printf("Initializing pin %d\n", gpioArray[i]);
+                disable_pins(gpioArray[i]); // Reset
                 init_gpio(gpioArray[i]); // Initiliaze array
                 set_output(gpioArray[i]); // set gpio pin to output
         }
@@ -44,11 +56,11 @@ int main(int argc, char *argv[])
         // 3 - Assign GPIO pins
         while(1)
         {
-                // _sleep(GetHours(10));
-                sleep(1);
+                sleep(TWELVEHOURS);
 
-                RPIPORT = ~RPIPORT;
+                RPIPORT = GetPortValue();
 
+                // I think this can be a thread
                 Set_Port(); // Assign output pins 
         }
 

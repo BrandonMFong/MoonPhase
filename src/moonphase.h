@@ -49,8 +49,9 @@ double GetFraction()
 
 // Pass in the julian day number and it will tell you which phase you are on
 // TODO make sure Days is julian day number
-int GetMoonState(double Days)
+int GetMoonState()
 {
+    double Days = GetFraction();
     if (Days == NEW) return NEW;
     else if (Days == THIRDQTR) return THIRDQTR;
     else if (Days == FULL) return FULL;
@@ -61,3 +62,5 @@ int GetMoonState(double Days)
     else if (MoonDays.FirstQ < Days < MoonDays.Max) return WAXINGCRESCENT;
     else return NEW; // See if this throws an error
 }
+
+
