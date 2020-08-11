@@ -24,6 +24,9 @@ int main(int argc, char *argv[])
         printf("Size of gpioArray is %d\n", sizeof(gpioArray)/sizeof(gpioArray[0]));
         for(int i = 0; i < sizeof(gpioArray)/sizeof(gpioArray[0]); i++)
         {
+                // Reset
+                printf("Deinitializing pin %d\n", gpioArray[i]);
+                disable_pins(gpioArray[i]);
                 printf("Initializing pin %d\n", gpioArray[i]);
                 init_gpio(gpioArray[i]); // Initiliaze array
                 set_output(gpioArray[i]); // set gpio pin to output

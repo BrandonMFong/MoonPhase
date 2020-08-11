@@ -32,6 +32,18 @@ void init_gpio(int pin)
 }
 
 /*
+ * Disable GPIO pins
+ */
+void disable_pins(int pin)
+{
+	if (-1 == GPIOUnexport(pin)) 
+        {
+		fprintf(stderr, "[Exit] Error for pin %d\n", pin);
+                exit(-1);
+        }
+}
+
+/*
  * Set GPIO directions
  */
 void set_input(int pin)
