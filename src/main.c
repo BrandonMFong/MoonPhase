@@ -91,7 +91,8 @@ int main(int argc, char *argv[])
                                 RPIPORT = 0x0F;
                                 break;
                 }
-
+                Set_Port(); 
+                sleep(10);    
         }
 
         return(0);
