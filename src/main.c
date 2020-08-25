@@ -48,20 +48,50 @@ int main(int argc, char *argv[])
         // set_output(PIN);
         // I am going to use a char
         // I want to use 4 bits to represent the phases
-        RPIPORT = 0x0A; // Right most bits will be the bits I care about
+        RPIPORT = 0x0F; // Right most bits will be the bits I care about
 
         // STEPS
         // 1 - Get Fractional
         // 2 - Determine which phase by fractional 
         // 3 - Assign GPIO pins
+        int i = 0;
         while(1)
         {
-                RPIPORT = GetPortValue();
+                // RPIPORT = GetPortValue();
 
-                // I think this can be a thread
-                Set_Port(); // Assign output pins 
+                // // I think this can be a thread
+                // Set_Port(); // Assign output pins 
 
-                sleep(TWELVEHOURS);
+                // sleep(TWELVEHOURS);
+
+                // Demo
+                switch (i)
+                {
+                        case 0:
+                                RPIPORT = 0x01 << 0;
+                                i = i + 1;
+                                break;
+                        
+                        case 1:
+                                RPIPORT = 0x01 << 1;
+                                i = i + 1;
+                                break;
+                        
+                        case 2:
+                                RPIPORT = 0x01 << 2;
+                                i = i + 1;
+                                break;
+                        
+                        case 3:
+                                RPIPORT = 0x01 << 3;
+                                i = 0;
+                                break;
+                        
+                        default:
+                                RPIPORT = 0x0F;
+                                break;
+                }
+
         }
 
         return(0);

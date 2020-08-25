@@ -12,6 +12,7 @@
 #define GPIO19NUM 19
 #define GPIO26NUM 26
 
+// From left to right
 #define GPIO06 3
 #define GPIO13 2
 #define GPIO19 1
@@ -112,6 +113,7 @@ void Set_Port()
         RPIPORT &= 0x0F; // Only worry about the right most pins
 
         // Get the pin values from the port variable
+        // anding it with 0x01 just incase there are bit stragglers on the left most bits 
         gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
         gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
         gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
