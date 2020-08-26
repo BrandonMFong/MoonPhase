@@ -38,57 +38,58 @@ int main(int argc, char *argv[])
     strcpy(param,argv[1]);
     if(strcmp("--demo",param) != 0)
     {
-            // This is not setting the array correctly 
-            int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
+        // This is not setting the array correctly 
+        int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
-            printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
-            for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
+        printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
+        for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
+        {
+            disable_pins(gpioArray[i]); // Reset
+            init_gpio(gpioArray[i]); // Initiliaze array
+            set_output(gpioArray[i]); // set gpio pin to output
+        }
+
+        int i = 0;
+        while (1)
+        {
+            // RPIPORT = GetPortValue();
+
+            // // I think this can be a thread
+            // Set_Port(); // Assign output pins 
+
+            // sleep(TWELVEHOURS);
+
+            // Demo
+            switch (i)
             {
-                disable_pins(gpioArray[i]); // Reset
-                init_gpio(gpioArray[i]); // Initiliaze array
-                set_output(gpioArray[i]); // set gpio pin to output
+            case 0:
+                RPIPORT = 0x01 << 0;
+                i = i + 1;
+                break;
+
+            case 1:
+                RPIPORT = 0x01 << 1;
+                i = i + 1;
+                break;
+
+            case 2:
+                RPIPORT = 0x01 << 2;
+                i = i + 1;
+                break;
+
+            case 3:
+                RPIPORT = 0x01 << 3;
+                i = 0;
+                break;
+
+            default:
+                RPIPORT = 0x0F;
+                break;
             }
-
-            int i = 0;
-            while (1)
-            {
-                // RPIPORT = GetPortValue();
-
-                // // I think this can be a thread
-                // Set_Port(); // Assign output pins 
-
-                // sleep(TWELVEHOURS);
-
-                // Demo
-                switch (i)
-                {
-                case 0:
-                    RPIPORT = 0x01 << 0;
-                    i = i + 1;
-                    break;
-
-                case 1:
-                    RPIPORT = 0x01 << 1;
-                    i = i + 1;
-                    break;
-
-                case 2:
-                    RPIPORT = 0x01 << 2;
-                    i = i + 1;
-                    break;
-
-                case 3:
-                    RPIPORT = 0x01 << 3;
-                    i = 0;
-                    break;
-
-                default:
-                    RPIPORT = 0x0F;
-                    break;
-                }
-                Set_Port();
-                sleep(1);
-            }
+            Set_Port();
+            sleep(1);
+        }
+        break;
     }
     else if(strcmp("--disable-pins",param) != 0)
     {
@@ -100,6 +101,7 @@ int main(int argc, char *argv[])
         {
             disable_pins(gpioArray[i]); // Reset
         }
+        break;
     }
     else
     {
