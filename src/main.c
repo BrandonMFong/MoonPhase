@@ -34,7 +34,8 @@ unsigned char GetPortValue()
 
 int main(int argc, char **argv)
 {
-    if(strcmp("--demo",argv) != 0)
+    char param[] = argv[1];
+    if(strcmp("--demo",param) != 0)
     {
             // This is not setting the array correctly 
             int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
@@ -88,7 +89,7 @@ int main(int argc, char **argv)
                 sleep(1);
             }
     }
-    else if(strcmp("--disable-pins",argv) != 0)
+    else if(strcmp("--disable-pins",param) != 0)
     {
         // This is not setting the array correctly 
         int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
