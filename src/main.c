@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
             Set_Port();
             sleep(1);
         }
-        break;
+        return(0);
     }
     else if(strcmp("--disable-pins",param) != 0)
     {
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
         {
             disable_pins(gpioArray[i]); // Reset
         }
-        break;
+        return(0);
     }
     else
     {
@@ -137,6 +137,7 @@ int main(int argc, char *argv[])
             sleep(TWELVEHOURS);
 
         }
+        return(0);
     }
     return(0);
 }
