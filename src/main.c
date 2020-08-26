@@ -12,6 +12,7 @@
 #include "moonphase.h"
 #include <stdio.h>   
 #include <unistd.h>
+#include <string.h>
 
 #define TWELVEHOURS 43200
 #define PIN  24
