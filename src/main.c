@@ -36,9 +36,10 @@ int main(int argc, char *argv[])
 {
     char param[100];
     strcpy(param,argv[1]);
-    printf("Argument passed: %s", param);
+    printf("Argument passed: %s\n", param);
     if(strcmp("--demo",param) != 0)
     {
+        printf("Initiating demo sequence");
         // This is not setting the array correctly 
         int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
@@ -94,6 +95,7 @@ int main(int argc, char *argv[])
     }
     else if(strcmp("--disable-pins",param) != 0)
     {
+        printf("Initiating disable-pins sequence");
         // This is not setting the array correctly 
         int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
@@ -106,6 +108,7 @@ int main(int argc, char *argv[])
     }
     else
     {
+        printf("Initiating Moonphase sequence");
         // This is not setting the array correctly 
         int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
