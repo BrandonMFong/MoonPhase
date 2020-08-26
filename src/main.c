@@ -32,7 +32,7 @@ unsigned char GetPortValue()
     }
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char argv[])
 {
     if(strcmp("--demo",argv) != 0)
     {
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
                     break;
                 }
                 Set_Port();
-                sleep(10);
+                sleep(1);
             }
     }
     else if(strcmp("--disable-pins",argv) != 0)
