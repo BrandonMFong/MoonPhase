@@ -34,7 +34,8 @@ unsigned char GetPortValue()
 
 int main(int argc, char *argv[])
 {
-    char param[] = argv[1];
+    char param[];
+    strcpy(param,argv[1]);
     if(strcmp("--demo",param) != 0)
     {
             // This is not setting the array correctly 
