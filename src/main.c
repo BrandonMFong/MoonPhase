@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
 {
     char param[100];
     strcpy(param,argv[1]);
+    printf("Argument passed: %s", param);
     if(strcmp("--demo",param) != 0)
     {
         // This is not setting the array correctly 
