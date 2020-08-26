@@ -35,7 +35,9 @@ unsigned char GetPortValue()
 int main(int argc, char *argv[])
 {
     char param[100];
-    strcpy(param,argv[1]);
+    if(argc > 1) strcpy(param,argv[1]);
+    else strcpy(param,"");
+    
     printf("Argument passed: %s\n", param);
     if(strcmp("--demo",param) == 0)
     {
