@@ -33,9 +33,8 @@ unsigned char GetPortValue()
 
 int main(int argc, char *argv[])
 {
-    switch (argv)
+    if(strcmp("--demo",argv) != 0)
     {
-        "--demo":
             // This is not setting the array correctly 
             int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
@@ -87,53 +86,52 @@ int main(int argc, char *argv[])
                 Set_Port();
                 sleep(10);
             }
-            break;
-        "--disable-pins":
-            // This is not setting the array correctly 
-            int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
-
-            printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
-            for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
-            {
-                disable_pins(gpioArray[i]); // Reset
-            }
-            break;
-            
-        default:
-            // This is not setting the array correctly 
-            int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
-
-            printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
-            for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
-            {
-                disable_pins(gpioArray[i]); // Reset
-                init_gpio(gpioArray[i]); // Initiliaze array
-                set_output(gpioArray[i]); // set gpio pin to output
-            }
-
-            // init_gpio(PIN);
-            // set_output(PIN);
-            // I am going to use a char
-            // I want to use 4 bits to represent the phases
-            RPIPORT = 0x0F; // Right most bits will be the bits I care about
-
-            // STEPS
-            // 1 - Get Fractional
-            // 2 - Determine which phase by fractional 
-            // 3 - Assign GPIO pins
-            int i = 0;
-            while (1)
-            {
-                // RPIPORT = GetPortValue();
-
-                // // I think this can be a thread
-                Set_Port(); // Assign output pins
-
-                sleep(TWELVEHOURS);
-
-            }
-            break;
     }
+    else if(strcmp("--disable-pins",argv) != 0)
+    {
+        // This is not setting the array correctly 
+        int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
+        printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
+        for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
+        {
+            disable_pins(gpioArray[i]); // Reset
+        }
+    }
+    else
+    {
+        // This is not setting the array correctly 
+        int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
+
+        printf("Size of gpioArray is %d\n", sizeof(gpioArray) / sizeof(gpioArray[0]));
+        for (int i = 0; i < sizeof(gpioArray) / sizeof(gpioArray[0]); i++)
+        {
+            disable_pins(gpioArray[i]); // Reset
+            init_gpio(gpioArray[i]); // Initiliaze array
+            set_output(gpioArray[i]); // set gpio pin to output
+        }
+
+        // init_gpio(PIN);
+        // set_output(PIN);
+        // I am going to use a char
+        // I want to use 4 bits to represent the phases
+        RPIPORT = 0x0F; // Right most bits will be the bits I care about
+
+        // STEPS
+        // 1 - Get Fractional
+        // 2 - Determine which phase by fractional 
+        // 3 - Assign GPIO pins
+        int i = 0;
+        while (1)
+        {
+            // RPIPORT = GetPortValue();
+
+            // // I think this can be a thread
+            Set_Port(); // Assign output pins
+
+            sleep(TWELVEHOURS);
+
+        }
+    }
     return(0);
 }
