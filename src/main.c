@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     char param[100];
     strcpy(param,argv[1]);
     printf("Argument passed: %s\n", param);
-    if(strcmp("--demo",param) != 0)
+    if(strcmp("--demo",param) == 0)
     {
         printf("Initiating demo sequence");
         // This is not setting the array correctly 
@@ -93,9 +93,9 @@ int main(int argc, char *argv[])
         }
         return(0);
     }
-    else if(strcmp("--disable-pins",param) != 0)
+    else if(strcmp("--disable-pins",param) == 0)
     {
-        printf("Initiating disable-pins sequence");
+        printf("Initiating disable-pins sequence\n");
         // This is not setting the array correctly 
         int gpioArray[4] = { GPIO06NUM, GPIO13NUM, GPIO19NUM, GPIO26NUM };
 
