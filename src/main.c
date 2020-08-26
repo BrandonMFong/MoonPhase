@@ -32,7 +32,7 @@ unsigned char GetPortValue()
     }
 }
 
-int main(int argc, char argv[])
+int main(int argc, char **argv)
 {
     if(strcmp("--demo",argv) != 0)
     {
