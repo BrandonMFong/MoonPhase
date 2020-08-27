@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         while (1)
         {
             RPIPORT = GetPortValue();
-
+            printf("RPIPORT = %d", RPIPORT);
             // // I think this can be a thread
             Set_Port(); // Assign output pins
 
