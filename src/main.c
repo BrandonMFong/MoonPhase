@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 {
     char param[100];
     if(argc > 1) strcpy(param,argv[1]);
-    else strcpy(param,"");
+    else strcpy(param,"Default");
     
     printf("Argument passed: %s\n", param);
     if(strcmp("--demo",param) == 0)
@@ -137,12 +137,12 @@ int main(int argc, char *argv[])
             init_gpio(gpioArray[i]); // Initiliaze array
             set_output(gpioArray[i]); // set gpio pin to output
         }
+        printf("Finished initializing\n");
 
-        // init_gpio(PIN);
-        // set_output(PIN);
         // I am going to use a char
         // I want to use 4 bits to represent the phases
         RPIPORT = 0x0F; // Right most bits will be the bits I care about
+        printf("Setting RPIPORT to 0x0F\n");
 
         // STEPS
         // 1 - Get Fractional
@@ -152,7 +152,7 @@ int main(int argc, char *argv[])
         while (1)
         {
             RPIPORT = GetPortValue();
-            printf("RPIPORT = %d", RPIPORT);
+            printf("RPIPORT = %d\n", RPIPORT);
             // // I think this can be a thread
             Set_Port(); // Assign output pins
 
