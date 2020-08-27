@@ -21,14 +21,30 @@ unsigned char GetPortValue()
 {
     switch(GetMoonState())
     {
-        case NEW: return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
-        case WANINGCRESCENT: return (1<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
-        case THIRDQTR: return (1<<GPIO06)|(1<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
-        case WANINGGIBBOUS: return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(0<<GPIO26);
-        case FULL: return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
-        case WAXINGGIBBOUS: return (0<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
-        case FIRSTQTR: return (0<<GPIO06)|(0<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
-        case WAXINGCRESCENT: return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(1<<GPIO26);
+        case NEW: 
+            printf("Phase: NEW");
+            return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+        case WANINGCRESCENT: 
+            printf("Phase: WANINGCRESCENT");
+            return (1<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+        case THIRDQTR: 
+            printf("Phase: THIRDQTR");
+            return (1<<GPIO06)|(1<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
+        case WANINGGIBBOUS: 
+            printf("Phase: WANINGGIBBOUS");
+            return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(0<<GPIO26);
+        case FULL: 
+            printf("Phase: FULL");
+            return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+        case WAXINGGIBBOUS: 
+            printf("Phase: WAXINGGIBBOUS");
+            return (0<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+        case FIRSTQTR: 
+            printf("Phase: FIRSTQTR");
+            return (0<<GPIO06)|(0<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
+        case WAXINGCRESCENT: 
+            printf("Phase: WAXINGCRESCENT");
+            return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(1<<GPIO26);
     }
 }
 
@@ -135,7 +151,7 @@ int main(int argc, char *argv[])
         int i = 0;
         while (1)
         {
-            // RPIPORT = GetPortValue();
+            RPIPORT = GetPortValue();
 
             // // I think this can be a thread
             Set_Port(); // Assign output pins
