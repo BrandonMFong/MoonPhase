@@ -22,28 +22,28 @@ unsigned char GetPortValue()
     switch(GetMoonState())
     {
         case NEW: 
-            printf("Phase: NEW");
+            printf("Phase: NEW\n");
             return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
         case WANINGCRESCENT: 
-            printf("Phase: WANINGCRESCENT");
+            printf("Phase: WANINGCRESCENT\n");
             return (1<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
         case THIRDQTR: 
-            printf("Phase: THIRDQTR");
+            printf("Phase: THIRDQTR\n");
             return (1<<GPIO06)|(1<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
         case WANINGGIBBOUS: 
-            printf("Phase: WANINGGIBBOUS");
+            printf("Phase: WANINGGIBBOUS\n");
             return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(0<<GPIO26);
         case FULL: 
-            printf("Phase: FULL");
+            printf("Phase: FULL\n");
             return (1<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
         case WAXINGGIBBOUS: 
-            printf("Phase: WAXINGGIBBOUS");
+            printf("Phase: WAXINGGIBBOUS\n");
             return (0<<GPIO06)|(1<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
         case FIRSTQTR: 
-            printf("Phase: FIRSTQTR");
+            printf("Phase: FIRSTQTR\n");
             return (0<<GPIO06)|(0<<GPIO13)|(1<<GPIO19)|(1<<GPIO26);
         case WAXINGCRESCENT: 
-            printf("Phase: WAXINGCRESCENT");
+            printf("Phase: WAXINGCRESCENT\n");
             return (0<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(1<<GPIO26);
     }
 }
