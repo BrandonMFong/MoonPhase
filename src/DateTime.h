@@ -15,7 +15,7 @@ struct DateTime GetDateTime()
 {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-    struct DateTime dt = {tm.tm_mon, tm.tm_mday, tm.tm_year, tm.tm_hour, tm.tm_min, tm.tm_sec};
+    struct DateTime dt = {tm.tm_mon, tm.tm_mday, tm.tm_year + 1900, tm.tm_hour, tm.tm_min, tm.tm_sec}; // Interesting the year needed to be shifted 
     return dt;
 }
 
