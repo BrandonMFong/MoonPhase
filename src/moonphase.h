@@ -60,10 +60,10 @@ int GetMoonState()
     else if (Days == THIRDQTR) return THIRDQTR;
     else if (Days == FULL) return FULL;
     else if (Days == FIRSTQTR) return FIRSTQTR;
-    else if (MoonDays.New < Days < MoonDays.ThirdQ) return WANINGCRESCENT;
-    else if (MoonDays.ThirdQ < Days < MoonDays.Full) return WANINGGIBBOUS;
-    else if (MoonDays.Full < Days < MoonDays.FirstQ) return WAXINGGIBBOUS;
-    else if (MoonDays.FirstQ < Days < MoonDays.Max) return WAXINGCRESCENT;
+    else if ((MoonDays.New < Days) && (Days < MoonDays.ThirdQ)) return WANINGCRESCENT;
+    else if ((MoonDays.ThirdQ < Days) && (Days < MoonDays.Full)) return WANINGGIBBOUS;
+    else if ((MoonDays.Full < Days) && (Days < MoonDays.FirstQ)) return WAXINGGIBBOUS;
+    else if ((MoonDays.FirstQ < Days) && (Days < MoonDays.Max)) return WAXINGCRESCENT;
     else return NEW; // See if this throws an error
 }
 
