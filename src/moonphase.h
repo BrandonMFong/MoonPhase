@@ -57,6 +57,8 @@ double GetFraction()
     // Use the fractional to get how far you are in the phase 
     double DaysIntoMoonphase = fractional * MoonDays.Max;
 
+    // There is more to this because the results are not accurate 
+
     return DaysIntoMoonphase;
 }
 
