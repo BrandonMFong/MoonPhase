@@ -30,9 +30,16 @@ double GetJulianDay(struct DateTime Date)
 }
 
 // This fraction represents how far you are into the moon phase
+/* Last Known New Moon */
+#define MONTH 8
+#define DAY 18
+#define YEAR 2020
+#define HOUR 22
+#define MINUTE 41
+#define SECOND 0
 double GetFraction()
 {
-    struct DateTime LastKnownNewMoon = {1, 6, 2000, 12, 24, 1};
+    struct DateTime LastKnownNewMoon = {MONTH, DAY, YEAR, HOUR, MINUTE, SECOND};
     struct DateTime Date = GetDateTime();
     printf("Last Known New Moon date: %d/%d/%d, %d:%d:%d\n", LastKnownNewMoon.Month,LastKnownNewMoon.Day,LastKnownNewMoon.Year,LastKnownNewMoon.Hour,LastKnownNewMoon.Minute,LastKnownNewMoon.Second);
     printf("Today's date: %d/%d/%d, %d:%d:%d\n", Date.Month,Date.Day,Date.Year,Date.Hour,Date.Minute,Date.Second);
@@ -42,14 +49,15 @@ double GetFraction()
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
     double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since Julian_LastKnownNewMoon date
+    printf("Days since last new moon: %lf",NumberOfNewMoons);
     double integral;
     double fractional = modf(NumberOfNewMoons, &integral); // Get the fraction of the whole number
     printf("Fractional: %lf\n", fractional);
 
     // Use the fractional to get how far you are in the phase 
-    double MoonCycleFraction = fractional * MoonDays.Max;
+    double DaysIntoMoonphase = fractional * MoonDays.Max;
 
-    return MoonCycleFraction;
+    return DaysIntoMoonphase;
 }
 
 // Pass in the julian day number and it will tell you which phase you are on
