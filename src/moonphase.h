@@ -49,7 +49,7 @@ double GetFraction()
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
     double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since Julian_LastKnownNewMoon date
-    printf("Days since last new moon: %lf",NumberOfNewMoons);
+    printf("Days since last new moon: %lf\n",NumberOfNewMoons);
     double integral;
     double fractional = modf(NumberOfNewMoons, &integral); // Get the fraction of the whole number
     printf("Fractional: %lf\n", fractional);
@@ -65,7 +65,7 @@ double GetFraction()
 int GetMoonState()
 {
     double Days = GetFraction();
-    printf("Days from Moonstate: %lf\n", Days);
+    printf("Days into cycle: %lf\n", Days);
     if (Days == NEW) return NEW;
     else if (Days == THIRDQTR) return THIRDQTR;
     else if (Days == FULL) return FULL;
