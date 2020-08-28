@@ -38,6 +38,7 @@ double GetFraction()
     printf("Today's date: %d/%d/%d, %d:%d:%d\n", Date.Month,Date.Day,Date.Year,Date.Hour,Date.Minute,Date.Second);
     double Julian_Today = GetJulianDay(Date); // Get current day
     double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon); // Get a known recorded new moon day
+    printf("Today's julian day: %lf\nNewMoon julian day: %lf\n",Julian_Today,Julian_LastKnownNewMoon);
     double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
 
     double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since Julian_LastKnownNewMoon date
