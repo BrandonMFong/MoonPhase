@@ -15,7 +15,6 @@ struct MoonDays
     double FirstQ;
     double Max;
 } MoonDays;
-struct MoonDays MoonDays = {0,7,15,22,29.53}; // Day per phase
 
 // Get julian day number
 double GetJulianDay(struct DateTime Date)
@@ -37,6 +36,7 @@ double GetJulianDay(struct DateTime Date)
 #define HOUR 22
 #define MINUTE 41
 #define SECOND 0
+struct MoonDays MoonDays = {0,7,15,22,29.53}; // Day per phase
 double GetFraction()
 {
     struct DateTime LastKnownNewMoon = {MONTH, DAY, YEAR, HOUR, MINUTE, SECOND};
@@ -63,7 +63,8 @@ double GetFraction()
 }
 
 // Pass in the julian day number and it will tell you which phase you are on
-// TODO make sure Days is julian day number
+// TODO Stop using julian days
+// WHOEVER IS READING THIS the moonphase.pdf from subsystem.us has incorrect data and is very misleading
 int GetMoonState()
 {
     double Days = GetFraction();
