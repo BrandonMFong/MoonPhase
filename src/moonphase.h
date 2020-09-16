@@ -2,81 +2,113 @@
 #include <stdio.h>
 #include <math.h>
 #include "DateTime.h"
-
-// States
-enum MoonState{NEW, WANINGCRESCENT, THIRDQTR, WANINGGIBBOUS, FULL, WAXINGGIBBOUS, FIRSTQTR, WAXINGCRESCENT};
+// use this formula https://minkukel.com/en/various/calculating-moon-phase/
+// TODO Stop using julian days
+// WHOEVER IS READING THIS the moonphase.pdf from subsystem.us has incorrect data and is very misleading
 
 // This struct is to hold the values for Moon Phase days
-struct MoonDays
+struct Bounds
 {
-    double New;
-    double ThirdQ;
-    double Full;
-    double FirstQ;
-    double Max;
-} MoonDays;
+    double New_From,New_To; // New
+    double WaxingCrescent_From,WaxingCrescent_To; // Waxing Crescent
+    double FirstQ_From,FirstQ_To; // First Quarter
+    double WaxingGibbous_From,WaxingGibbous_To; // Waxing Gibbous
+    double Full_From,Full_To; // Full
+    double WaningGibbous_From,WaningGibbous_To; // Waning Gibbous
+    double LastQ_From,LastQ_To; // Last Quarter
+    double WaningCrescent_From,WaningCrescent_To; // Waning Crescent
+    double Max_From,Max_To; // New
+} Bounds;
 
-// Get julian day number
-double GetJulianDay(struct DateTime Date)
+// Set bounds
+struct Bounds Bounds = 
 {
-    double A = Date.Year / 100;
-    double B = A / 4;
-    double C = 2 - A + B;
-    double E = 365.25 * (Date.Year + 4716);
-    double F = 30.6001 * (Date.Month + 1);
-    double JulianDay = C+Date.Day+E+F-1524.5;
-    return JulianDay;
-}
+    0,	0.033863193308711, // New
+    0.033863193308711, 	0.216136806691289, // Waxing Crescent
+    0.216136806691289, 	0.283863193308711, // First Quarter
+    0.283863193308711, 	0.466136806691289, // Waxing Gibbous
+    0.466136806691289, 	0.533863193308711, // Full
+    0.533863193308711, 	0.716136806691289, // Waning Gibbous
+    0.716136806691289, 	0.783863193308711, // Last Quarter
+    0.783863193308711, 	0.966136806691289, // Waning Crescent
+    0.966136806691289, 1 // New
+}; 
 
 // This fraction represents how far you are into the moon phase
 /* Last Known New Moon */
-#define MONTH 8
-#define DAY 18
-#define YEAR 2020
-#define HOUR 22
-#define MINUTE 41
+#define MONTH 1
+#define DAY 6
+#define YEAR 2019
+#define HOUR 17
+#define MINUTE 28
 #define SECOND 0
-struct MoonDays MoonDays = {0,7,15,22,29.53}; // Day per phase
-double GetFraction()
+
+#define LunarCycleConstant 29.53058770576
+double GetDaysIntoCycle()
 {
-    struct DateTime LastKnownNewMoon = {MONTH, DAY, YEAR, HOUR, MINUTE, SECOND};
-    struct DateTime Date = GetDateTime();
-    printf("Last Known New Moon date: %d/%d/%d, %d:%d:%d\n", LastKnownNewMoon.Month,LastKnownNewMoon.Day,LastKnownNewMoon.Year,LastKnownNewMoon.Hour,LastKnownNewMoon.Minute,LastKnownNewMoon.Second);
-    printf("Today's date: %d/%d/%d, %d:%d:%d\n", Date.Month,Date.Day,Date.Year,Date.Hour,Date.Minute,Date.Second);
-    double Julian_Today = GetJulianDay(Date); // Get current day
-    double Julian_LastKnownNewMoon = GetJulianDay(LastKnownNewMoon); // Get a known recorded new moon day
-    printf("Today's julian day: %lf\nNewMoon julian day: %lf\n",Julian_Today,Julian_LastKnownNewMoon);
-    double DaysSinceNewMoon = Julian_Today - Julian_LastKnownNewMoon; // In Julians
+    struct MyDateTime LastKnownNewMoon = {MONTH, DAY, YEAR, HOUR, MINUTE, SECOND}; // Last know full moon
+    printf("LastKnownNewMoon's date: %d/%d/%d, %d:%d:%d\n", LastKnownNewMoon.Month,LastKnownNewMoon.Day,LastKnownNewMoon.Year,LastKnownNewMoon.Hour,LastKnownNewMoon.Minute,LastKnownNewMoon.Second);
 
-    double NumberOfNewMoons = DaysSinceNewMoon / MoonDays.Max; // Get the number of new moons since Julian_LastKnownNewMoon date
-    printf("Days since last new moon: %lf\n",NumberOfNewMoons);
-    double integral;
-    double fractional = modf(NumberOfNewMoons, &integral); // Get the fraction of the whole number
-    printf("Fractional: %lf\n", fractional);
+    struct MyDateTime Today = GetDateTime(); // Today
+    printf("Today's date: %d/%d/%d, %d:%d:%d\n", Today.Month,Today.Day,Today.Year,Today.Hour,Today.Minute,Today.Second);
 
-    // Use the fractional to get how far you are in the phase 
-    double DaysIntoMoonphase = fractional * MoonDays.Max;
+    double lunarsecs = DayToSeconds(LunarCycleConstant);
+    printf("Lunar constant in seconds: %lf\n", lunarsecs);
 
-    // There is more to this because the results are not accurate 
+    printf("\nConverting Last known new moon to seconds\n");
+    double LastKnownNewMoon_secs = GetTotalSeconds(LastKnownNewMoon);
+    printf("\nConverting Today's date to seconds\n");
+    double Today_secs = GetTotalSeconds(Today);
 
-    return DaysIntoMoonphase;
+    printf("\nLast known new moon in seconds: %lf\n", LastKnownNewMoon_secs);
+    printf("Today in seconds: %lf\n", Today_secs);
+
+    double totalsecs = Today_secs - LastKnownNewMoon_secs;
+    printf("Time between today and last new moon %lf\n", totalsecs);
+
+    // To compile this, use -lm switch 
+    double currentsecs = fmod(totalsecs,lunarsecs); // This function is not known 
+    printf("Seconds into cycle (modulus, %lf %% %lf) %lf\n",totalsecs, lunarsecs, currentsecs);
+
+    // If this is negative number (in case a date was selected before 2000) we add 1 cycle (add ‘lunarsecs’ to ‘currentsecs’).
+
+    double currentfrac = currentsecs / lunarsecs;
+    printf("Fraction we are into the cycle (%lf / %lf) %lf\n",currentsecs, lunarsecs, currentfrac);
+    printf("\n");
+
+    // // Testing Epoch
+    // printf("TESTING EPOCH\n");
+    // long EpochToday = GetEpochSeconds(Today);
+    // long EpochLastNew = GetEpochSeconds(LastKnownNewMoon);
+    // long Epochtotalsecs = EpochToday - EpochLastNew;
+    // printf("Epoch total secs since new moon: %ld\n", Epochtotalsecs);
+
+    // // Error here 
+    // double Epochcurrentsecs = fmod(Epochtotalsecs,lunarsecs); // This function is not known
+    // printf("Epoch days into cycle: %ld\n", Epochcurrentsecs);
+    // double Epochcurrentfrac = (double)Epochcurrentsecs / (double)lunarsecs; 
+    // printf("Epoch fraction  %ld", Epochcurrentfrac);
+
+
+    printf("\n");
+    return currentfrac; // temp
 }
 
-// Pass in the julian day number and it will tell you which phase you are on
-// TODO Stop using julian days
-// WHOEVER IS READING THIS the moonphase.pdf from subsystem.us has incorrect data and is very misleading
+// States
+enum MoonState{NEW, WAXINGCRESCENT, FIRSTQTR, WAXINGGIBBOUS, FULL, WANINGGIBBOUS, LASTQTR, WANINGCRESCENT};
 int GetMoonState()
 {
-    double Days = GetFraction();
-    printf("Days into cycle: %lf\n", Days);
-    if (Days == NEW) return NEW;
-    else if (Days == THIRDQTR) return THIRDQTR;
-    else if (Days == FULL) return FULL;
-    else if (Days == FIRSTQTR) return FIRSTQTR;
-    else if ((MoonDays.New < Days) && (Days < MoonDays.ThirdQ)) return WANINGCRESCENT;
-    else if ((MoonDays.ThirdQ < Days) && (Days < MoonDays.Full)) return WANINGGIBBOUS;
-    else if ((MoonDays.Full < Days) && (Days < MoonDays.FirstQ)) return WAXINGGIBBOUS;
-    else if ((MoonDays.FirstQ < Days) && (Days < MoonDays.Max)) return WAXINGCRESCENT;
+    double Fraction = GetDaysIntoCycle();
+    printf("Into cycle: %lf\n", Fraction);
+    if ((Bounds.New_From < Fraction) && (Fraction < Bounds.New_To)) return NEW;
+    else if ((Bounds.WaxingCrescent_From < Fraction) && (Fraction < Bounds.WaxingCrescent_To)) return WAXINGCRESCENT;
+    else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_From)) return FIRSTQTR;
+    else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_From)) return WAXINGGIBBOUS;
+    else if ((Bounds.Full_From < Fraction) && (Fraction < Bounds.Full_To)) return FULL;
+    else if ((Bounds.WaningGibbous_From < Fraction) && (Fraction < Bounds.WaningGibbous_To)) return WANINGGIBBOUS;
+    else if ((Bounds.LastQ_From < Fraction) && (Fraction < Bounds.LastQ_To)) return LASTQTR;
+    else if ((Bounds.WaningCrescent_From < Fraction) && (Fraction < Bounds.WaningCrescent_To)) return WANINGCRESCENT;
+    else if ((Bounds.Max_From < Fraction) && (Fraction < Bounds.Max_To)) return NEW;
     else return NEW; // See if this throws an error
 }
 

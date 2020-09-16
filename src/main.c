@@ -27,8 +27,8 @@ unsigned char GetPortValue()
         case WANINGCRESCENT: 
             printf("Phase: WANINGCRESCENT\n");
             return (1<<GPIO06)|(0<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
-        case THIRDQTR: 
-            printf("Phase: THIRDQTR\n");
+        case LASTQTR: 
+            printf("Phase: LASTQTR\n");
             return (1<<GPIO06)|(1<<GPIO13)|(0<<GPIO19)|(0<<GPIO26);
         case WANINGGIBBOUS: 
             printf("Phase: WANINGGIBBOUS\n");
@@ -143,6 +143,7 @@ int main(int argc, char *argv[])
         // I want to use 4 bits to represent the phases
         RPIPORT = 0x0F; // Right most bits will be the bits I care about
         printf("Setting RPIPORT to 0x0F\n");
+        printf("\n");
 
         // STEPS
         // 1 - Get Fractional
