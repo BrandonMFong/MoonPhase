@@ -76,20 +76,6 @@ double GetDaysIntoCycle()
     printf("Fraction we are into the cycle (%lf / %lf) %lf\n",currentsecs, lunarsecs, currentfrac);
     printf("\n");
 
-    // // Testing Epoch
-    // printf("TESTING EPOCH\n");
-    // long EpochToday = GetEpochSeconds(Today);
-    // long EpochLastNew = GetEpochSeconds(LastKnownNewMoon);
-    // long Epochtotalsecs = EpochToday - EpochLastNew;
-    // printf("Epoch total secs since new moon: %ld\n", Epochtotalsecs);
-
-    // // Error here 
-    // double Epochcurrentsecs = fmod(Epochtotalsecs,lunarsecs); // This function is not known
-    // printf("Epoch days into cycle: %ld\n", Epochcurrentsecs);
-    // double Epochcurrentfrac = (double)Epochcurrentsecs / (double)lunarsecs; 
-    // printf("Epoch fraction  %ld", Epochcurrentfrac);
-
-
     printf("\n");
     return currentfrac; // temp
 }

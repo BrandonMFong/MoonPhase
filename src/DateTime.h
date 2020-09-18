@@ -18,26 +18,6 @@ struct MyDateTime GetDateTime()
     return dt;
 }
 
-long GetEpochSeconds(struct MyDateTime var)
-{
-    struct tm t;
-    time_t t_of_day;
-
-    t.tm_year = var.Year-1900;  // Year - 1900
-    t.tm_mon = var.Month;           // Month, where 0 = jan
-    t.tm_mday = var.Day;          // Day of the month
-    t.tm_hour = var.Hour;
-    t.tm_min = var.Minute;
-    t.tm_sec = var.Second;
-    t.tm_isdst = -1;        // Is DST on? 1 = yes, 0 = no, -1 = unknown
-
-    t_of_day = mktime(&t);
-
-    printf("%d/%d/%d, %d:%d:%d to", var.Month,var.Day,var.Year,var.Hour,var.Minute,var.Second);
-    printf(" Epoch seconds: %ld\n", (long) t_of_day);
-    return (long) t_of_day;
-}
-
 unsigned long  GetHours(double NumberOfHours)
 {
     // Seconds * Minutes * Hours

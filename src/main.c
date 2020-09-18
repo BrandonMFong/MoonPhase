@@ -5,6 +5,8 @@
  * Notes:
  *      - Every new moon is 29.53 days
  * 
+ * TODO make GPIO an interrupt so you can apply dimming using pulse width modulation 
+ * 
  * The gpio pins will be turning on the LED lights
  */
 
