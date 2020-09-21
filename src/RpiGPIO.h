@@ -5,6 +5,7 @@
 
 #include "RPi_GPIO_Code_Samples.h"
 #include <stdbool.h>
+#include <pthread.h>
 
 // GPIO pin number
 #define GPIO06NUM 6
@@ -108,6 +109,8 @@ unsigned char RPIPORT = 0x00;
 /* Takes port variable and parse it to write to output
  * Note that we are only using the right most bits of RPIPORT
  * To do this, maybe I can utilize ia shift
+ * https://www.geeksforgeeks.org/multithreading-c-2/
+ * Must incorporate threading in this 
  */
 void Set_Port()
 {
@@ -115,6 +118,7 @@ void Set_Port()
 
         // Get the pin values from the port variable
         // anding it with 0x01 just incase there are bit stragglers on the left most bits 
+        // I need to create a static pwm here 
         gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
         gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
         gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
