@@ -133,6 +133,8 @@ void *Set_Port()
 
         while(1)
         {
+                printf("RPIPORT = %x\n", RPIPORT);
+                
                 // Get the pin values from the port variable
                 // anding it with 0x01 just incase there are bit stragglers on the left most bits 
                 // I need to create a static pwm here 

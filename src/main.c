@@ -149,7 +149,6 @@ int main(int argc, char *argv[])
         while (1)
         {
             RPIPORT = GetPortValue();
-            printf("RPIPORT = %x\n", RPIPORT);
             // // I think this can be a thread
 
             sleep(TWELVEHOURS);
