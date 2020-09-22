@@ -74,13 +74,6 @@ int main(int argc, char *argv[])
         int i = 0;
         while (1)
         {
-            // RPIPORT = GetPortValue();
-
-            // // I think this can be a thread
-            // Set_Port(); // Assign output pins 
-
-            // sleep(TWELVEHOURS);
-
             // Demo
             switch (i)
             {
@@ -152,12 +145,12 @@ int main(int argc, char *argv[])
         // 2 - Determine which phase by fractional 
         // 3 - Assign GPIO pins
         int i = 0;
+        init_port();
         while (1)
         {
             RPIPORT = GetPortValue();
             printf("RPIPORT = %d\n", RPIPORT);
             // // I think this can be a thread
-            Set_Port(); // Assign output pins
 
             sleep(TWELVEHOURS);
 

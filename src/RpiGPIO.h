@@ -112,7 +112,7 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
-void Set_Port()
+void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
 
@@ -123,4 +123,12 @@ void Set_Port()
         gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
         gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
         gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
+}
+
+void init_port()
+{
+        pthread_t thread_id;
+        printf("Starting port thread\n"); 
+        pthread_create(&thread_id, NULL, Set_Port, NULL); 
+        pthread_join(thread_id, NULL); 
 }
