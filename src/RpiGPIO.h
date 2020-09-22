@@ -6,6 +6,7 @@
 #include "RPi_GPIO_Code_Samples.h"
 #include <stdbool.h>
 #include <pthread.h>
+#include <time.h>
 
 // GPIO pin number
 #define GPIO06NUM 6
@@ -100,6 +101,18 @@ void gpio_output(int pin, int out)
         }
 }
 
+void delay(int number_of_seconds) 
+{ 
+        // Converting time into milli_seconds 
+        int milli_seconds = 1000 * number_of_seconds; 
+        
+        // Storing start time 
+        clock_t start_time = clock(); 
+        
+        // looping till required time is not achieved 
+        while (clock() < start_time + milli_seconds) 
+                ; 
+} 
 
 // Recall 0x00 is 8 bits long, one byte
 // Which is the size for a char
@@ -127,13 +140,15 @@ void *Set_Port()
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
-                sleep(ONPERCENT * UNIT);
+                // sleep(ONPERCENT * UNIT);
+                delay(1);
 
                 gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x00));
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x00));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x00));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x00));
-                sleep(UNIT - (ONPERCENT * UNIT));
+                // sleep(UNIT - (ONPERCENT * UNIT));
+                delay(1);
         }
 }
 
