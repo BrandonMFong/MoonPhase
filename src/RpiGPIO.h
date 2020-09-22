@@ -116,13 +116,16 @@ void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
 
-        // Get the pin values from the port variable
-        // anding it with 0x01 just incase there are bit stragglers on the left most bits 
-        // I need to create a static pwm here 
-        gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
-        gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
-        gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
-        gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
+        while(1)
+        {
+                // Get the pin values from the port variable
+                // anding it with 0x01 just incase there are bit stragglers on the left most bits 
+                // I need to create a static pwm here 
+                gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
+                gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
+                gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
+                gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
+        }
 }
 
 void init_port()
