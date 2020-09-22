@@ -126,7 +126,7 @@ unsigned char RPIPORT = 0x00;
  * Must incorporate threading in this 
  */
 #define UNIT 0.00001
-#define ONPERCENT 30 
+#define ONPERCENT 10
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
@@ -134,7 +134,7 @@ void *Set_Port()
         while(1)
         {
                 printf("RPIPORT = %x\n", RPIPORT);
-                
+
                 // Get the pin values from the port variable
                 // anding it with 0x01 just incase there are bit stragglers on the left most bits 
                 // I need to create a static pwm here 
