@@ -112,7 +112,7 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
-#define ONPERCENT 70
+#define ONPERCENT 70 * 0.001
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
