@@ -112,6 +112,7 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
+#define ONPERCENT 70
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
@@ -121,11 +122,13 @@ void *Set_Port()
                 // Get the pin values from the port variable
                 // anding it with 0x01 just incase there are bit stragglers on the left most bits 
                 // I need to create a static pwm here 
+                sleep(ONPERCENT);
                 gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x01));
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
 
+                sleep(100 - ONPERCENT);
                 gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x00));
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x00));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x00));
