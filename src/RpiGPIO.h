@@ -141,14 +141,14 @@ void *Set_Port()
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
                 // sleep(ONPERCENT * UNIT);
-                delay(1);
+                delay(5);
 
                 gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x00));
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x00));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x00));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x00));
                 // sleep(UNIT - (ONPERCENT * UNIT));
-                delay(1);
+                delay(5);
         }
 }
 
