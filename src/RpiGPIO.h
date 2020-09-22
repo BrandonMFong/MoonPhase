@@ -133,5 +133,5 @@ void init_port()
         pthread_t thread_id;
         printf("Starting port thread\n"); 
         pthread_create(&thread_id, NULL, Set_Port, NULL); 
-        pthread_join(thread_id, NULL); 
+        // pthread_join(thread_id, NULL); 
 }
