@@ -125,8 +125,8 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
-#define UNIT 0.0001
-#define ONPERCENT 10
+#define UNIT 1
+#define ONPERCENT 1
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
@@ -149,7 +149,8 @@ void *Set_Port()
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x00));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x00));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x00));
-                sleep(UNIT - (ONPERCENT * UNIT));
+                sleep(ONPERCENT * UNIT);
+                // sleep(UNIT - (ONPERCENT * UNIT));
                 // delay(5);
         }
 }
