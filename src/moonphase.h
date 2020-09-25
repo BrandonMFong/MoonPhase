@@ -87,16 +87,41 @@ int GetMoonState()
     double Fraction = GetDaysIntoCycle();
     printf("Into cycle: %lf\n", Fraction);
     printf("Moon Age: %lf\n", Fraction*LunarCycleConstant);
-    if ((Bounds.New_From < Fraction) && (Fraction < Bounds.New_To)) return NEW;
-    else if ((Bounds.WaxingCrescent_From < Fraction) && (Fraction < Bounds.WaxingCrescent_To)) return WAXINGCRESCENT;
-    else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_From)) return FIRSTQTR;
-    else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_From)) return WAXINGGIBBOUS;
-    else if ((Bounds.Full_From < Fraction) && (Fraction < Bounds.Full_To)) return FULL;
-    else if ((Bounds.WaningGibbous_From < Fraction) && (Fraction < Bounds.WaningGibbous_To)) return WANINGGIBBOUS;
-    else if ((Bounds.LastQ_From < Fraction) && (Fraction < Bounds.LastQ_To)) return LASTQTR;
-    else if ((Bounds.WaningCrescent_From < Fraction) && (Fraction < Bounds.WaningCrescent_To)) return WANINGCRESCENT;
-    else if ((Bounds.Max_From < Fraction) && (Fraction < Bounds.Max_To)) return NEW;
-    else return NEW; // See if this throws an error
+
+    // NEW
+    if ((Bounds.New_From < Fraction) && (Fraction < Bounds.New_To))
+        {PrintBounds(Bounds.New_From,Fraction,Bounds.New_To);return NEW;}
+    // WAXINGCRESCENT
+    else if ((Bounds.WaxingCrescent_From < Fraction) && (Fraction < Bounds.WaxingCrescent_To)) 
+        {PrintBounds(Bounds.WaxingCrescent_From,Fraction,Bounds.WaxingCrescent_To);return WAXINGCRESCENT;}
+    // FIRSTQTR
+    else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_From)) 
+        {PrintBounds(Bounds.FirstQ_From,Fraction,Bounds.FirstQ_From);return FIRSTQTR;}
+    // WAXINGGIBBOUS
+    else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_From)) 
+        {PrintBounds(Bounds.WaxingGibbous_From,Fraction,Bounds.WaxingGibbous_From);return WAXINGGIBBOUS;}
+    // FULL
+    else if ((Bounds.Full_From < Fraction) && (Fraction < Bounds.Full_To)) 
+        {PrintBounds(Bounds.Full_From,Fraction,Bounds.Full_To);return FULL;}
+    // WANINGGIBBOUS
+    else if ((Bounds.WaningGibbous_From < Fraction) && (Fraction < Bounds.WaningGibbous_To)) 
+        {PrintBounds(Bounds.WaningGibbous_From,Fraction,Bounds.WaningGibbous_To);return WANINGGIBBOUS;}
+    // LASTQTR
+    else if ((Bounds.LastQ_From < Fraction) && (Fraction < Bounds.LastQ_To)) 
+        {PrintBounds(Bounds.LastQ_From,Fraction,Bounds.LastQ_To);return LASTQTR;}
+    // WANINGCRESCENT
+    else if ((Bounds.WaningCrescent_From < Fraction) && (Fraction < Bounds.WaningCrescent_To)) 
+        {PrintBounds(Bounds.WaningCrescent_From,Fraction,Bounds.WaningCrescent_To);return WANINGCRESCENT;}
+    // NEW
+    else if ((Bounds.Max_From < Fraction) && (Fraction < Bounds.Max_To)) 
+        {PrintBounds(Bounds.Max_From,Fraction,Bounds.Max_To);return NEW;}
+    // NEW
+    else {PrintBounds(0.00,0.00,0.00);return NEW;} // See if this throws an error
+}
+
+void PrintBounds(double Low, double op, double High)
+{
+    printf("%lf < %lf < %lf", Low, op, High);
 }
 
 
