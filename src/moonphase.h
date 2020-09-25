@@ -80,6 +80,11 @@ double GetDaysIntoCycle()
     return currentfrac; // temp
 }
 
+void PrintBounds(double Low, double op, double High)
+{
+    printf("%lf < %lf < %lf", Low, op, High);
+}
+
 // States
 enum MoonState{NEW, WAXINGCRESCENT, FIRSTQTR, WAXINGGIBBOUS, FULL, WANINGGIBBOUS, LASTQTR, WANINGCRESCENT};
 int GetMoonState()
@@ -119,9 +124,5 @@ int GetMoonState()
     else {PrintBounds(0.00,0.00,0.00);return NEW;} // See if this throws an error
 }
 
-void PrintBounds(double Low, double op, double High)
-{
-    printf("%lf < %lf < %lf", Low, op, High);
-}
 
 
