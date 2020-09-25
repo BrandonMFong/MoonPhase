@@ -82,7 +82,7 @@ double GetDaysIntoCycle()
 
 void PrintBounds(double Low, double op, double High)
 {
-    printf("%lf < %lf < %lf", Low, op, High);
+    printf("%lf < %lf < %lf\n", Low, op, High);
 }
 
 // States
@@ -100,8 +100,8 @@ int GetMoonState()
     else if ((Bounds.WaxingCrescent_From < Fraction) && (Fraction < Bounds.WaxingCrescent_To)) 
         {PrintBounds(Bounds.WaxingCrescent_From,Fraction,Bounds.WaxingCrescent_To);return WAXINGCRESCENT;}
     // FIRSTQTR
-    else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_From)) 
-        {PrintBounds(Bounds.FirstQ_From,Fraction,Bounds.FirstQ_From);return FIRSTQTR;}
+    else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_To)) 
+        {PrintBounds(Bounds.FirstQ_From,Fraction,Bounds.FirstQ_To);return FIRSTQTR;}
     // WAXINGGIBBOUS
     else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_From)) 
         {PrintBounds(Bounds.WaxingGibbous_From,Fraction,Bounds.WaxingGibbous_From);return WAXINGGIBBOUS;}
