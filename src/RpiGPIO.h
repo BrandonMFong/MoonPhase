@@ -126,7 +126,7 @@ unsigned char RPIPORT = 0x00;
  * Must incorporate threading in this 
  */
 #define FREQ 50 // in hertz 
-#define DC 5 // in percentage
+#define DC 1 // in percentage
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
