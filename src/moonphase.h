@@ -86,6 +86,7 @@ int GetMoonState()
 {
     double Fraction = GetDaysIntoCycle();
     printf("Into cycle: %lf\n", Fraction);
+    printf("Moon Age: %lf\n", Fraction*LunarCycleConstant);
     if ((Bounds.New_From < Fraction) && (Fraction < Bounds.New_To)) return NEW;
     else if ((Bounds.WaxingCrescent_From < Fraction) && (Fraction < Bounds.WaxingCrescent_To)) return WAXINGCRESCENT;
     else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_From)) return FIRSTQTR;
