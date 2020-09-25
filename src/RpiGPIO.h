@@ -125,15 +125,15 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
-#define UNIT 1 // In seconds
-#define ONPERCENT 0.5
+#define FREQ 50
+#define DC 10
 void *Set_Port()
 {
         RPIPORT &= 0x0F; // Only worry about the right most pins
 
         while(1)
         {
-                printf("RPIPORT = %x\n", RPIPORT);
+                // printf("RPIPORT = %x\n", RPIPORT);
 
                 // Get the pin values from the port variable
                 // anding it with 0x01 just incase there are bit stragglers on the left most bits 
@@ -142,15 +142,13 @@ void *Set_Port()
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x01));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x01));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x01));
-                // sleep(ONPERCENT * UNIT);
-                usleep(1);
+                sleep((1/FREQ)*(DC*0.01)); // Duty
 
                 gpio_output(GPIO06NUM,((RPIPORT >> GPIO06) & 0x00));
                 gpio_output(GPIO13NUM,((RPIPORT >> GPIO13) & 0x00));
                 gpio_output(GPIO19NUM,((RPIPORT >> GPIO19) & 0x00));
                 gpio_output(GPIO26NUM,((RPIPORT >> GPIO26) & 0x00));
-                // sleep(UNIT - (ONPERCENT * UNIT));
-                usleep(1);
+                sleep((1/FREQ)*(1.00 - (DC*0.01)));
         }
 }
 
