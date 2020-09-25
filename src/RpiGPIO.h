@@ -125,7 +125,7 @@ unsigned char RPIPORT = 0x00;
  * https://www.geeksforgeeks.org/multithreading-c-2/
  * Must incorporate threading in this 
  */
-#define FREQ 50 // in hertz 
+#define FREQ 70 // in hertz 
 #define DC 1 // in percentage
 void *Set_Port()
 {
