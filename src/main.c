@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
         {
             RPIPORT = GetPortValue();
 
-            sleep(TWELVEHOURS);
+            sleep(5);
 
         }
         return(0);
