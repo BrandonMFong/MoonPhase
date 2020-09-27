@@ -103,8 +103,8 @@ int GetMoonState()
     else if ((Bounds.FirstQ_From < Fraction) && (Fraction < Bounds.FirstQ_To)) 
         {PrintBounds(Bounds.FirstQ_From,Fraction,Bounds.FirstQ_To);return FIRSTQTR;}
     // WAXINGGIBBOUS
-    else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_From)) 
-        {PrintBounds(Bounds.WaxingGibbous_From,Fraction,Bounds.WaxingGibbous_From);return WAXINGGIBBOUS;}
+    else if ((Bounds.WaxingGibbous_From < Fraction) && (Fraction < Bounds.WaxingGibbous_To)) 
+        {PrintBounds(Bounds.WaxingGibbous_From,Fraction,Bounds.WaxingGibbous_To);return WAXINGGIBBOUS;}
     // FULL
     else if ((Bounds.Full_From < Fraction) && (Fraction < Bounds.Full_To)) 
         {PrintBounds(Bounds.Full_From,Fraction,Bounds.Full_To);return FULL;}
