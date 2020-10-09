@@ -117,7 +117,7 @@ void delay(int number_of_seconds)
 // Recall 0x00 is 8 bits long, one byte
 // Which is the size for a char
 // To turn on an Rpi, just set to one
-unsigned char RPIPORT = 0x00;
+volatile unsigned char RPIPORT = 0x00;
 
 /* Takes port variable and parse it to write to output
  * Note that we are only using the right most bits of RPIPORT
